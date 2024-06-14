@@ -7,13 +7,13 @@ router.get('/', (req, res) => {
 });
 
 // login in  (create new user -> post)
-router.post('/login', userController.addUser, (req, res) => {
-    return res.status(200).json(res.locals.newUser);
-});
+router.post('/login', userController.verifyUser, (req, res) => {
+    return res.status(200).json({success: true, message: "Login Successfully!"});
+})
 
 // sign up  (search user -> get)
-router.post('/signup', userController.verifyUser, (req, res) => {
-    return res.status(200).json("Signup Successfully!");
+router.post('/signup', userController.addUser, (req, res) => {
+    return res.status(200).json({success: true, message: "SignUp Successfully!"});
 })
 
 // change password (update user -> patch)
