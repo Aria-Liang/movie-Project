@@ -4,11 +4,19 @@ import { Link } from 'react-router-dom';
 import logo from '../../public/logo.png';
 import fav from "../../public/fav.png";
 import { useNavigate } from 'react-router-dom';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { clearUser } from '../../src/Redux/action';
 
 export const Navbar = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { user_name, isLoggedIn, likeTotal } = useSelector(state => state.auth);
+
+    const handleLogOut = () => {
+        dispatch(clearUser());
+        navigate('/login');
+    }
 
     const handleSearchSubmit = async (event) => {
         event.preventDefault();
@@ -35,13 +43,23 @@ export const Navbar = () => {
                 </form>
             </div>
             <div className="nav-login">
-                <Link to="/login">
-                    <button>Login</button>
-                </Link>
                 <Link to="/fav">
                     <img src={fav} alt="Favorites"/>
                 </Link>
-                <div className="nav-card-count">{1}</div>
+                <div className="nav-card-count">{likeTotal}</div>
+
+                {isLoggedIn? (
+                    <>
+                        <div className="logout">
+                        <span>Hello, {user_name}!</span>
+                        <button onClick={handleLogOut}>LOGOUT</button>
+                        </div>
+                    </>
+                ):(
+                    <Link to="/login">
+                        <button>Login</button>
+                    </Link>
+                )}
             </div>
         </div>
     );

@@ -7,6 +7,7 @@ import Cart from "../pages/Cart.jsx";
 import HomePage from "../pages/HomePage.jsx";
 import MovieDetails from "../pages/MovieDetails.jsx";
 import SearchResults from "../pages/SearchResult.jsx";
+import CartItem from "../component/CartItems/CartItems.jsx";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
                 <Route path="/card" element={<Cart />}/>
                 <Route path="/movie/:id" element={<MovieDetails/>} />
                 <Route path="/search" element={<SearchResults />} />
+                <Route path="/fav" element={<CartItem />} />
             </Routes>
             <Footer />
         </div>

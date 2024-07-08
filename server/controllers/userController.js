@@ -22,7 +22,8 @@ userController.addUser = async(req, res, next) => {
         const selectQuery = `
             SELECT *
             FROM users
-            WHERE username = $1 OR email = $2`
+            WHERE username = $1 OR email = $2
+            `
         const uniqueQueryData = await db.query(selectQuery, [username, email]);
         if (uniqueQueryData.rows.length > 0) {
 
@@ -43,7 +44,7 @@ userController.addUser = async(req, res, next) => {
         
         const addUserData = await db.query(addUserQuery, attributes);
         res.locals.newUser = addUserData.rows[0];
-        console.log(res.locals.newUser);
+        //console.log(res.locals.newUser);
         return next();
     } catch(err) {
         return next({
@@ -68,7 +69,7 @@ userController.verifyUser = async(req, res, next) => {
 
         // verify whether the user exists
         const searchQuery = `
-            SELECT password 
+            SELECT password, user_id, username 
             From users 
             WHERE username = $1`;
         const searchResult = await db.query(searchQuery, [username]);
@@ -81,7 +82,7 @@ userController.verifyUser = async(req, res, next) => {
         if (!isMatch) {
             return res.status(401).json({err: 'Invalid password'});
         }
-        
+        res.locals.verifyUser = searchResult.rows[0];
         return next();
     }catch(err) {
         return next({

@@ -2,7 +2,8 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const userRoutes = require('./routes/userRoutes');
-const movieRoutes = require('./routes/movieRoutes')
+const movieRoutes = require('./routes/movieRoutes');
+const likeRouter = require('./routes/likeRoutes');
 
 const app = express();
 const port = 3000;
@@ -12,6 +13,7 @@ app.use(express.json());
 
 app.use('/api/user', userRoutes);
 app.use('/api/movies', movieRoutes);
+app.use('/like', likeRouter);
 
 app.get('/', (req, res) => {
 

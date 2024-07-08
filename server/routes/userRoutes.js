@@ -8,12 +8,12 @@ router.get('/', (req, res) => {
 
 // login in  (create new user -> post)
 router.post('/login', userController.verifyUser, (req, res) => {
-    return res.status(200).json({success: true, message: "Login Successfully!"});
+    return res.status(200).json({success: true, user_id: res.locals.verifyUser.user_id, user_name: res.locals.verifyUser.username});
 })
 
 // sign up  (search user -> get)
 router.post('/signup', userController.addUser, (req, res) => {
-    return res.status(200).json({success: true, message: "SignUp Successfully!"});
+    return res.status(200).json({success: true, user_id: res.locals.newUser.user_id, user_name:  res.locals.newUser.username});
 })
 
 // change password (update user -> patch)

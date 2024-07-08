@@ -1,14 +1,13 @@
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../../.env')});
 const db = require('../models/dbModel');
 const axios = require('axios');
 const movieController = {};
 
-const apiKey = '0b0896e8633958b70902a413206f7307';
+const apiKey = process.env.API_KEY;
 
-//const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}`;
 const popularURL = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
-const topRatedURL = `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=en-US&page=1`
-//const MovieDetailsURL = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US`
-
+const topRatedURL = `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=en-US&page=1`;
 
 movieController.getPopularMovies = async (req, res) => {
     try {

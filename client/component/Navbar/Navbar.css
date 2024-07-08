@@ -33,6 +33,7 @@
 .nav-login {
     display: flex;
     align-items: center;
+    margin-right: 60px;
     
 }
 
@@ -59,9 +60,28 @@ img {
     align-items: center;
     margin-top: -35px;
     margin-left: -35px;
+    margin-right: 30px;
     border-radius: 11px;
     font-size: 11px;
     font-weight: bold;
     background: red;
     color: white;
+}
+
+.logout {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.logout span {
+    font-family: "Spicy Rice";
+    font-size: larger;
+}
+
+.logout button {
+    font-weight: bold;
 }

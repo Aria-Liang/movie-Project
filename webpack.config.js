@@ -6,7 +6,8 @@ module.exports = {
     entry: './client/src/index.js',
     output: {
         path: path.resolve(__dirname, './dist'),
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        publicPath: '/' 
     },
     module: {
         rules: [
@@ -23,7 +24,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader'] // 使用 style-loader 和 css-loader
+                use: ['style-loader', 'css-loader'],
             }
         ]
     },
